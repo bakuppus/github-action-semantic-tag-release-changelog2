@@ -36,30 +36,32 @@ jobs:
           bump_each_commit: false
 
 
-      - name: "✏️ Generate full changelog"
+
+      - name: Run Changelog CI
+        uses: saadmk11/changelog-ci@v1.0.0
         id: generate-full-changelog
-        uses: heinrichreimer/github-changelog-generator-action@v2.3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          headerLabel: "# 📑 Changelog"
-          breakingLabel: '### 💥 Breaking'
-          enhancementLabel: '### 🚀 Enhancements'
-          bugsLabel: '### 🐛 Bug fixes'
-          deprecatedLabel: '### ⚠️ Deprecations'
-          removedLabel: '### 🔥 Removals'
-          securityLabel: '### 🛡️ Security'
-          issuesLabel: '### 📁 Other issues'
-          prLabel: '### 📁 Other pull requests'
-          addSections: '{"documentation":{"prefix":"### 📖 Documentation","labels":["documentation"]},"tests":{"prefix":"### ✅ Testing","labels":["tests"]}}'
-          issues: true
-          issuesWoLabels: true
-          pullRequests: true
-          prWoLabels: true
-          author: true
-          unreleased: true
-          compareLink: false
-          stripGeneratorNotice: true
-          verbose: false
+          # Optional, you can provide any name for your changelog file,
+          # We currently support Markdown (.md) and reStructuredText (.rst) files
+          # defaults to `CHANGELOG.md` if not provided.
+          #changelog_filename: CHANGELOG.rst
+          # Optional, only required when you want more customization
+          # e.g: group your changelog by labels with custom titles,
+          # different version prefix, pull request title and version number regex etc.
+          # config file can be in JSON or YAML format.
+          #config_file: changelog-ci-config.json
+          # Optional, This will be used to configure git
+          # defaults to `github-actions[bot]` if not provided.
+          #committer_username: 'test'
+          #committer_email: 'test@test.com'
+          # Optional, only required when you want to run Changelog CI
+          # on an event other than `pull_request` event.
+          # In this example `release_version` is fetched from `workflow_dispatch` events input.
+          # You can use any other method to fetch the release version
+          # such as environment variable or from output of another action
+          release_version: ${{ github.event.inputs.release_version }}
+          # Optional
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
         uses: actions/create-release@latest
