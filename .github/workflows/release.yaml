@@ -48,8 +48,8 @@ jobs:
         uses: actions/create-release@latest
         with:
           prerelease: false
-          tag_name: ${{ steps.versioning.outputs.version }}
-          release_name: ${{ steps.versioning.outputs.version }}
+          tag_name: v${{ steps.versioning.outputs.version }}
+          release_name: v${{ steps.versioning.outputs.version }}
           body: ${{steps.github_release.outputs.changelog}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
