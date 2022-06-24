@@ -26,9 +26,13 @@ jobs:
           format: "${major}.${minor}.${patch}-rc${increment}"
           bump_each_commit: true
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
+
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: ${{ steps.versioning.outputs.version }}
-          prerelease: false
-          title: ${{ steps.versioning.outputs.version }}
+          tag_name: ${{ steps.versioning.outputs.version }}
+          release_name: ${{ steps.versioning.outputs.version }}
+          prerelease: true
