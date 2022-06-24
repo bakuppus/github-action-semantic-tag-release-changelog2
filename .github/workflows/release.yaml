@@ -50,6 +50,7 @@ jobs:
           securityLabel: '### 🛡️ Security'
           pullRequests: false
           author: true
+          onlyLastTag: true
 
 
       - name: Create Release
