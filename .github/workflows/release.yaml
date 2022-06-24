@@ -57,9 +57,9 @@ jobs:
           prWoLabels: true
           author: true
           unreleased: true
-          compareLink: true
+          compareLink: false
           stripGeneratorNotice: true
-          verbose: true
+          verbose: false
 
       - name: Create Release
         uses: actions/create-release@latest
