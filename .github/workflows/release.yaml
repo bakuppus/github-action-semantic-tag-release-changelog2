@@ -48,7 +48,7 @@ jobs:
         id: changelog
         uses: metcalfc/changelog-generator@v2.0.0
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          myToken: ${{ secrets.GITHUB_TOKEN }}
 
       #Add Date To Changelog
       - name: Get current date
