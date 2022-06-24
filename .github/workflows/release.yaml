@@ -32,7 +32,7 @@ jobs:
           # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
           minor_pattern: "(MINOR)"
           # A string to determine the format of the version output
-          format: "${major}.${minor}.${patch}-rc${increment}"
+          format: "${major}.${minor}.${patch}"
           bump_each_commit: false
 
 
