@@ -30,4 +30,4 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: ${{ steps.versioning.outputs.version }}
           prerelease: false
-          title: "Release"-${{ steps.versioning.outputs.version }}
+          title: ${{ steps.versioning.outputs.version }}
