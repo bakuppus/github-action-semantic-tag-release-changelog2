@@ -16,17 +16,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: semantic-versioning-tag
-        uses: LongOddCode/semantic-versioning-tag@0.6.0
-        id: svt
+      - uses: paulhatch/semantic-version@v4.0.2
+        id: versioning
+        with:
+      # The prefix to use to identify tags
+          tag_prefix: "v"
+      # A string which, if present in a git commit, indicates that a change represents a
+      # major (breaking) change, supports regular expressions wrapped with '/'
+          major_pattern: "(MAJOR)"
+      # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
+          minor_pattern: "(MINOR)"
+      # A string to determine the format of the version output
+          format: "${major}.${minor}.${patch}-rc${increment}"
 
-      - name: validation and set params
-        run: |
-          echo ${{ steps.svt.outputs.major }}
-          echo ${{ steps.svt.outputs.minor }}
-          echo ${{ steps.svt.outputs.patch }}
-          echo ${{ steps.svt.outputs.prerelease }}
-          echo ${{ steps.svt.outputs.buildmetadata }}
+          bump_each_commit: false
+
 
       #Create Release
       - name: Create Release
@@ -34,7 +38,7 @@ jobs:
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: latest
+          automatic_release_tag: ${{ steps.versioning.outputs.release }}
           prerelease: false
 
 
