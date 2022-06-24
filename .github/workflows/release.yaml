@@ -55,4 +55,4 @@ jobs:
           release_name: v${{ steps.versioning.outputs.version }}
           body: ${{steps.build_changelog.outputs.changelog}}
           draft: false
-          prerelease: true
+          prerelease: false
