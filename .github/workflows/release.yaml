@@ -37,9 +37,9 @@ jobs:
 
       - name: Generate changelog
         id: changelog
-        uses: metcalfc/changelog-generator@v2.0.0
-        with:
-          myToken: ${{ secrets.GITHUB_TOKEN }}
+        uses: Cossey/release-notes-generator-action@v2.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 
