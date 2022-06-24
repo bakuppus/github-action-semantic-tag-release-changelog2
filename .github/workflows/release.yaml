@@ -45,15 +45,6 @@ jobs:
           # If this is set to true, *every* commit will be treated as a new version.
           bump_each_commit: true
 
-  changelog:
-    needs: versioning
-    name: "Changelog"
-    runs-on: "ubuntu-latest"
-    steps:
-      - uses: actions/checkout@v2
-        name: Check out code
-        with:
-          fetch-depth: 0
 
       - name: Build Changelog
         id: github_release
