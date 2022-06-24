@@ -35,13 +35,11 @@ jobs:
           format: "${major}.${minor}.${patch}-rc${increment}"
           bump_each_commit: false
 
-
-      - name: Conventional Changelog Action
+      - name: Generate changelog
         id: changelog
-        uses: TriPSs/conventional-changelog-action@v3
+        uses: metcalfc/changelog-generator@v2.0.0
         with:
-          github-token: ${{ secrets.github_token }}
-          output-file: "false"
+          myToken: ${{ secrets.GITHUB_TOKEN }}
 
 
 
