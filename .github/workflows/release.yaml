@@ -21,15 +21,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: paulhatch/semantic-version@v4.0.2
+      - uses: paulhatch/semantic-version@v4.0.3
         id: versioning
         with:
-          # The prefix to use to identify tags
           tag_prefix: "v"
           major_pattern: "(MAJOR)"
           minor_pattern: "(MINOR)"
           format: "${major}.${minor}.${patch}"
           bump_each_commit: true
+          search_commit_body: true
 
 
 
