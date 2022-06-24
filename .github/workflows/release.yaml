@@ -74,18 +74,15 @@ jobs:
           cat << "EOF"
           ${{ steps.modified.outputs.modified }}
           EOF
+
       #Create Release
       - name: Create Release
         if: steps.create_version.outputs.patch == 0 || contains(github.event.commits[0].message, '(PATCH)')
         id: create_release
-        uses: ncipollo/release-action@v1
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-          tag: v${{ steps.create_version.outputs.version }}
-          name: Release ${{ steps.create_version.outputs.version }}
-          body: |
-            ${{ steps.modified.outputs.modified }}
-          draft: false
-          prerelease: false
-          commit: ${{ github.ref_name }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: v${{ steps.create_version.outputs.version }}
+          prerelease: true
+
 
