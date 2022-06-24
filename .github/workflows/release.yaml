@@ -24,6 +24,11 @@ jobs:
           major_pattern: "BREAKING CHANGE:"
           minor_pattern: "feat:"
           format: "v${major}.${minor}.${patch}"
+          change_path: "Readme"
+          namespace: my-service
+          search_commit_body: false
+          user_format_type: "csv"
+          bump_each_commit: true
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
