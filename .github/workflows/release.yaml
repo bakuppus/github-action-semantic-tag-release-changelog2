@@ -24,10 +24,6 @@ jobs:
           major_pattern: "(MAJOR)"
           minor_pattern: "(MINOR)"
           format: "${major}.${minor}.${patch}-rc${increment}"
-          change_path: "Readme"
-          namespace: my-service
-          search_commit_body: false
-          user_format_type: "csv"
           bump_each_commit: true
 
       - uses: "marvinpinto/action-automatic-releases@latest"
