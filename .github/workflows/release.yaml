@@ -36,21 +36,14 @@ jobs:
           bump_each_commit: false
 
 
-      - name: "✏️ Generate full changelog"
-        id: generate-full-changelog
-        uses: heinrichreimer/github-changelog-generator-action@v2.3
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          headerLabel: "# 📑 Changelog"
-          breakingLabel: '### 💥 Breaking'
-          enhancementLabel: '### 🚀 Enhancements'
-          bugsLabel: '### 🐛 Bug fixes'
-          deprecatedLabel: '### ⚠️ Deprecations'
-          removedLabel: '### 🔥 Removals'
-          securityLabel: '### 🛡️ Security'
-          pullRequests: false
-          author: true
-          onlyLastTag: true
+          github-token: ${{ secrets.github_token }}
+          output-file: "false"
+
+
 
 
       - name: Create Release
@@ -59,7 +52,7 @@ jobs:
           prerelease: false
           tag_name: v${{ steps.versioning.outputs.version }}
           release_name: v${{ steps.versioning.outputs.version }}
-          body: ${{steps.generate-full-changelog.outputs.changelog}}
+          body: ${{steps.changelog.outputs.changelog}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
