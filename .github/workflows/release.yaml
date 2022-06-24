@@ -10,7 +10,7 @@ on:
 jobs:
 
   versioning:
-    needs: build
+
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
