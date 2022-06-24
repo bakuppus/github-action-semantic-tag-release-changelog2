@@ -29,7 +29,7 @@ jobs:
           minor_pattern: "(MINOR)"
           format: "${major}.${minor}.${patch}"
           bump_each_commit: true
-          search_commit_body: ['branch', 'tag_prefix', 'major_pattern', 'minor_pattern', 'format', 'change_path', 'namespace', 'short_tags', 'bump_each_commit']
+          search_commit_body: 'format'
 
 
 
