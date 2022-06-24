@@ -9,8 +9,13 @@ on:
 
 jobs:
 
+
   release:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: semantic-versioning-tag
         uses: LongOddCode/semantic-versioning-tag@0.6.0
         id: svt
