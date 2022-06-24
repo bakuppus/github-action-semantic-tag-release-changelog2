@@ -36,13 +36,30 @@ jobs:
           bump_each_commit: false
 
 
-      - name: Build Changelog
-        id: github_release
-        uses: mikepenz/release-changelog-builder-action@v1
+      - name: "✏️ Generate full changelog"
+        id: generate-full-changelog
+        uses: heinrichreimer/github-changelog-generator-action@v2.3
         with:
-          toTag: ${{ steps.versioning.outputs.version }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          headerLabel: "# 📑 Changelog"
+          breakingLabel: '### 💥 Breaking'
+          enhancementLabel: '### 🚀 Enhancements'
+          bugsLabel: '### 🐛 Bug fixes'
+          deprecatedLabel: '### ⚠️ Deprecations'
+          removedLabel: '### 🔥 Removals'
+          securityLabel: '### 🛡️ Security'
+          issuesLabel: '### 📁 Other issues'
+          prLabel: '### 📁 Other pull requests'
+          addSections: '{"documentation":{"prefix":"### 📖 Documentation","labels":["documentation"]},"tests":{"prefix":"### ✅ Testing","labels":["tests"]}}'
+          issues: true
+          issuesWoLabels: true
+          pullRequests: true
+          prWoLabels: true
+          author: true
+          unreleased: true
+          compareLink: true
+          stripGeneratorNotice: true
+          verbose: true
 
       - name: Create Release
         uses: actions/create-release@latest
@@ -50,7 +67,7 @@ jobs:
           prerelease: false
           tag_name: v${{ steps.versioning.outputs.version }}
           release_name: v${{ steps.versioning.outputs.version }}
-          body: ${{steps.github_release.outputs.changelog}}
+          body: ${{steps.generate-full-changelog.outputs.changelog}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
