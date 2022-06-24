@@ -48,7 +48,7 @@ jobs:
           deprecatedLabel: '### ⚠️ Deprecations'
           removedLabel: '### 🔥 Removals'
           securityLabel: '### 🛡️ Security'
-          pullRequests: true
+          pullRequests: false
           author: true
 
 
