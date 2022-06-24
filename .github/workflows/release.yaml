@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Git Semantic Version
-          id: versioning
+        id: versioning
         uses: PaulHatch/semantic-version@v4.0.2
         with:
           # The prefix to use to identify tags
