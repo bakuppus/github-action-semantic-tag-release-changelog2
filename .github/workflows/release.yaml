@@ -28,11 +28,11 @@ jobs:
           tag_prefix: "v"
           #major_pattern: "(MAJOR)"
           #minor_pattern: "(MINOR)"
-          format: "${major}.${minor}.${patch}"
           bump_each_commit: false
           major_pattern: "bug:"
           minor_pattern: "feat:"
           patch_pattern: "patch:"
+          format: "${major}.${minor}.${patch}"
 
 
 
