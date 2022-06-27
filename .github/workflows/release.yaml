@@ -42,11 +42,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-
-
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: v${{ steps.versioning.outputs.version }}
-          title: v${{ steps.versioning.outputs.version }}
+          tag_name: v${{ steps.versioning.outputs.version }}
+          release_name: v${{ steps.versioning.outputs.version }}
+          body: ${{steps.build_changelog.outputs.changelog}}
+          draft: false
           prerelease: false
+
