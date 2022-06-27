@@ -29,6 +29,7 @@ jobs:
           minor_pattern: "(MINOR)"
           format: "${major}.${minor}.${patch}"
           bump_each_commit: true
+          branch: main
 
 
 
