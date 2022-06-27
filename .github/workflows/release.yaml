@@ -31,7 +31,7 @@ jobs:
           bump_each_commit: false
           major_pattern: "bug:"
           minor_pattern: "feat:"
-          patch_pattern: "patch:"
+          short_tags: true
           format: "${major}.${minor}.${patch}"
 
 
